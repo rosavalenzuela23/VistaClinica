@@ -20,6 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("expediente")
 public class ControladorExpediente {
     
+    /**
+     * TODO: CHANGE THE idPsicologo por IdExpediente
+     * @param idPsicologo
+     * @return 
+     */
     @GetMapping("/{idPsicologo}")
     public String buscarExpedientes(@PathVariable Long idPsicologo){
         
@@ -30,7 +35,11 @@ public class ControladorExpediente {
         return json;
     }
     
-
+    @GetMapping("/paciente/{idPaciente}")
+    public String buscarExpediente(@PathVariable Long idPaciente) {
+        var negocioExpediente = NegocioFactory.createInstanceExpediente();
+        return negocioExpediente.obtenerExpedientePorPacienteId(idPaciente);
+    }
     
     @PostMapping("/registrar")
     public String registrarExpediente(@RequestBody String json){
