@@ -5,10 +5,15 @@
 package org.vista.api;
 
 import interfaces.INegocioEmpleado;
+import interfaces.INegocioPsicologo;
+import interfaces.INegocioAdministrador;
+import interfaces.INegocioRecepcionista;
 import java.util.HashMap;
 import java.util.Map;
 import org.rosa.negocioclinica.NegocioEmpleado;
-import org.rosa.negocioclinica.NegocioFactory;
+import org.rosa.negocioclinica.NegocioPsicologo;
+import org.rosa.negocioclinica.NegocioAdministrador;
+import org.rosa.negocioclinica.NegocioRecepcionista;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -45,8 +50,27 @@ public class ControladorEmpleado {
             errorResponse.put("message", e.getMessage());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse); 
         }
+    }
+    
+    @PostMapping("Recepcionista")
+    public String registrarRecepcionista(@RequestBody String json){
+        INegocioRecepcionista nr = new NegocioRecepcionista();
+        return nr.registrarRecepcionista(json);  
+    }
+    
+    @PostMapping("Psicologo")
+    public String registrarPsicologo(@RequestBody String json){
         
+        INegocioPsicologo np = new NegocioPsicologo();
+        return np.registrarPsicologo(json);
         
     }
+    
+    @PostMapping("Administrador")
+    public String registrarAdministrador(@RequestBody String json){
+        INegocioAdministrador na = new NegocioAdministrador();
+        return na.registrarAdministrador(json);
+    }
+    
        
 }
