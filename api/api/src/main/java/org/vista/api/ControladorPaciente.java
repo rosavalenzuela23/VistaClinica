@@ -40,5 +40,28 @@ public class ControladorPaciente {
         
         return negocio.getPacientesPsicologo(id);
     }
+
+    @GetMapping("/carta")
+    public String obtenerPacientePsicologo(@RequestParam("carta") Boolean tieneCarta) {
+        INegocioPaciente negocio = new NegocioPaciente();
+
+        return negocio.obtenerPacientesSinCarta();
+    }
     
+    @PostMapping("/carta")
+    public String guardarCartaConcentimiento(@RequestPart("file") MultipartFile file, @RequestParam("paciente") String json) {
+        INegocioPaciente negocio = new NegocioPaciente();
+        
+        try {
+            negocio.agregarCartaConcentimiento(json, file.getBytes());
+        } catch (Exception e) {
+            System.out.println("en la api");
+            e.printStackTrace();
+        }
+        
+        
+        
+        return "{}";
+    }
+
 }
