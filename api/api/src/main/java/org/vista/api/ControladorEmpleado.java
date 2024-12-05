@@ -17,6 +17,7 @@ import org.rosa.negocioclinica.NegocioRecepcionista;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -72,5 +73,37 @@ public class ControladorEmpleado {
         return na.registrarAdministrador(json);
     }
     
+    @GetMapping("all")
+    public String obtenerEmpleados(){
+        INegocioEmpleado ne = new NegocioEmpleado();
+        return ne.obtenerEmpleados();
+    }
+    
+    @PutMapping("actualizar/Psicologo")
+    public String actualizarPsicologo(@RequestBody String json){
+        INegocioPsicologo np = new NegocioPsicologo();
+        return np.actualizarPsicologo(json);
+    }
+    
+    @PutMapping("actualizar/Administrador")
+    public String actualizarAdministrador(@RequestBody String json){
+        INegocioAdministrador na = new NegocioAdministrador();
+        return na.actualizarAdministrador(json);
+    }
+    
+    @PutMapping("actualizar/Recepcionista")
+    public String actualizarRecepcionista(@RequestBody String json){
+        INegocioRecepcionista nr = new NegocioRecepcionista();
+        return nr.actualizarRecepcionista(json);
+    }
+    
+    @PutMapping("eliminar")
+    public String eliminarEmpleado(@RequestBody String json){
+        INegocioEmpleado ne = new NegocioEmpleado();
+        return ne.eliminarEmpleado(json);
+    }
+   
+    
+   
        
 }
