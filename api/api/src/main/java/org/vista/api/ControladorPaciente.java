@@ -12,7 +12,10 @@ import interfaces.INegocioPaciente;
 import org.rosa.negocioclinica.NegocioPaciente;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -39,6 +42,12 @@ public class ControladorPaciente {
         INegocioPaciente negocio = new NegocioPaciente();
         
         return negocio.getPacientesPsicologo(id);
+    }
+    
+    @GetMapping("/todos")
+    public String obtnerTodosLosPacientes() {
+        INegocioPaciente negocio = new NegocioPaciente();
+        return negocio.obtenerTodos();
     }
 
     @GetMapping("/carta")

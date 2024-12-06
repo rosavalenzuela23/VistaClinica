@@ -103,7 +103,11 @@ public class ControladorEmpleado {
         return ne.eliminarEmpleado(json);
     }
    
-    
+    @GetMapping("obtener/todos/psicologo")
+    public String obtenerTodosLosPsicologos() {
+        INegocioPsicologo negocio = new NegocioPsicologo();
+        return negocio.obtenerTodos();
+    }
    
        
 }
